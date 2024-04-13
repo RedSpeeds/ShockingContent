@@ -1,15 +1,14 @@
-﻿using LethalShock;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using UnityEngine;
-using static ShockingContent.ShockingContent;
+using static ShockingContent.ShockingContentPlugin;
 using Random = System.Random;
 
 namespace ShockingContent.Util
 {
     internal static class Operations
     {
-        internal static readonly string pishockLogId = "ShockingContent (Content warning)";
+        internal static readonly string pishockLogId = "ShockingContentPlugin (Content warning)";
         private static readonly Random rnd = new();
         private static DateTime lastShock;
         internal static async void DoOperation(int intensity, int duration, ShockModes mode, bool warning = false, bool vibrateOnly = false, bool beep = false)

@@ -1,6 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
-using static ShockingContent.ShockingContent;
+using static ShockingContent.ShockingContentPlugin;
 
 namespace ShockingContent
 {
@@ -69,14 +69,15 @@ namespace ShockingContent
         }
         static Config()
         {
-            file = new ConfigFile(Paths.ConfigPath + "\\ShockingContent.cfg", true);
+            logger.LogInfo("Initializing config");
+            file = new ConfigFile(Paths.ConfigPath + "\\ShockingContentPlugin.cfg", true);
 
-            PishockApiKey = file.Bind("PiShock", "ApiKey", "", "PiShock API key");
+            PishockApiKey = file.Bind("PiShock", "ApiKey", "APIKEY", "PiShock API key");
             // Binding for the username
-            PishockUsername = file.Bind("PiShock", "Username", "", "PiShock username.");
+            PishockUsername = file.Bind("PiShock", "Username", "USERNAME", "PiShock username.");
 
             // Binding for the codes
-            PishockCodes = file.Bind("PiShock", "Codes", "", "codes for PiShock.");
+            PishockCodes = file.Bind("PiShock", "Codes", "CODES", "codes for PiShock seperated by a comma.");
 
             // Player Damage configuration bindings
             Player.Damage.Enabled = file.Bind("Player.Damage", "Enabled", true, "Enable or disable damage effects.");
@@ -123,6 +124,8 @@ namespace ShockingContent
             ShockStick.ShockMode = file.Bind("ShockStick", "ShockMode", ShockModes.ALL, "Mode of shock to be used.");
             ShockStick.Beep = file.Bind("ShockStick", "Beep", false, "If true, emits a beep sound with the effect.");
 
+            file.Save();
+            logger.LogDebug("Config saved");
         }
     }
 }

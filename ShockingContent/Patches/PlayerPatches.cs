@@ -9,7 +9,7 @@ namespace ShockingContent.Patches
         [Patch]
         public static void Init()
         {
-            ShockingContent.logger.LogInfo("Patching player");
+            ShockingContentPlugin.logger.LogInfo("Patching player");
 
             On.Player.TakeDamage += Player_TakeDamage;
             On.Player.Die += Player_Die;

@@ -1,0 +1,10 @@
+{
+  "name": "ShockingContent",
+  "version_number": "1.0.0",
+  "website_url": "https://github.com/RedSpeeds/ShockingContent",
+  "description": "Connect your PiShock to Content Warning",
+  "dependencies": [
+    "BepInEx-BepInExPack-5.4.2100",
+    "Hamunii-AutoHookGenPatcher-1.0.2"
+  ]
+}

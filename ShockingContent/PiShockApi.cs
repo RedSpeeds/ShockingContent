@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LethalShock
+namespace ShockingContent
 {
     public class PiShockApi
     {
