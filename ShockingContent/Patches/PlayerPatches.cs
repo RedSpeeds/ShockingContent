@@ -6,6 +6,7 @@ namespace ShockingContent.Patches
 {
     public static class PlayerPatches
     {
+        private static DateTime lastHugged;
         [Patch]
         public static void Init()
         {
@@ -19,9 +20,14 @@ namespace ShockingContent.Patches
 
         private static bool Player_Heal(On.Player.orig_Heal orig, Player self, float healAmount)
         {
+            TimeSpan calculatedTime = DateTime.Now - lastHugged;
             var og = orig(self, healAmount);
-            if (!self.IsLocal || !Config.Player.Heal.Enabled.Value) return og;
+            if (!self.IsLocal || !Config.Player.Heal.Enabled.Value || calculatedTime < TimeSpan.FromSeconds(1))
+            {
+                return og;
+            }
             Operations.DoOperation(Config.Player.Heal.Intensity.Value, Config.Player.Heal.Duration.Value, Config.Player.Heal.ShockMode.Value, false, !Config.Player.Heal.Shock.Value);
+            lastHugged = DateTime.Now;
             return og;
         }
 
